@@ -1,4 +1,6 @@
 import flet as ft
+from flet.controls import alignment
+
 from UI.alert import AlertManager
 
 '''
@@ -43,8 +45,8 @@ class View:
         self.txt_responsabile = ft.Text(
             value=f"Responsabile: {self.controller.get_responsabile()}",
             size=16,
-            weight=ft.FontWeight.BOLD
-        )
+            weight=ft.FontWeight.BOLD)
+
 
         # TextField per responsabile
         self.input_responsabile = ft.TextField(value=self.controller.get_responsabile(), label="Responsabile")
@@ -63,6 +65,7 @@ class View:
         pulsante_conferma_responsabile = ft.Button("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
+        #self.bottone_mostra_strumenti = ft.Button(content = 'Mostra', on_click = )
         # TODO
 
         # --- LAYOUT ---
@@ -82,6 +85,8 @@ class View:
             ft.Divider(),
 
             # Sezione 3
+            ft.Row([ft.Text("Strumenti", size=20)],alignment=ft.MainAxisAlignment.START),
+            ft.Divider(),
             # TODO
 
             # Sezione 4

@@ -35,6 +35,9 @@ class DepositoStrumenti:
             Funzione che legge tutti gli strumenti nel database
             :return: una lista con tutti gli strumenti presenti oppure None
         """
+        cnx = get_connection()
+        if cnx is not None:
+            cursor = cnx.cursor()
         # TODO
 
     def cerca_strumenti_per_tipo(self, tipo) -> list[Strumento] | None:
