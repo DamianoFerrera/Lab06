@@ -65,7 +65,7 @@ class View:
         pulsante_conferma_responsabile = ft.Button("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
-        self.bottone_mostra_strumenti = ft.Button(content = 'Mostra', on_click = UI.controller.mostra_strumenti)
+        self.bottone_mostra_strumenti = ft.Button(content = 'Mostra', on_click = self.controller.mostra_lista)
         # TODO
 
         # --- LAYOUT ---
@@ -85,7 +85,7 @@ class View:
             ft.Divider(),
 
             # Sezione 3
-            ft.Row([ft.Text("Strumenti", size=20)],alignment=ft.MainAxisAlignment.START),
+            ft.Row([ft.Text("Strumenti",  size=20), self.bottone_mostra_strumenti], alignment=ft.MainAxisAlignment.START),
             ft.Divider(),
             # TODO
 
