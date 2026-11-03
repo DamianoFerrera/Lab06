@@ -1,6 +1,6 @@
 import flet as ft
 from flet.controls import alignment
-
+import UI
 from UI.alert import AlertManager
 
 '''
@@ -65,7 +65,7 @@ class View:
         pulsante_conferma_responsabile = ft.Button("Conferma", on_click=self.controller.conferma_responsabile)
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
-        #self.bottone_mostra_strumenti = ft.Button(content = 'Mostra', on_click = )
+        self.bottone_mostra_strumenti = ft.Button(content = 'Mostra', on_click = UI.controller.mostra_strumenti)
         # TODO
 
         # --- LAYOUT ---

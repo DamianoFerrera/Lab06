@@ -28,4 +28,14 @@ class Controller:
         self._view.update()
 
     # Altre Funzioni Event Handler
+    def mostra_lista(self, e):
+        strumenti = self._model.get_strumenti()
+        self._view.lista_strumenti.controls.clear()
+
+        if strumenti is None:
+            self._view.lista_strumenti.controls.append(ft.Text('errore connessione database', color = 'red'))
+        else:
+            for i in strumenti:
+                self._view.lista_strumenti.controls.append(ft.Text(f"{i.id} | {i.nome} | {i.tipo} | {i.marca} | {i.prezzo}"))
+
     # TODO

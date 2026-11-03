@@ -36,8 +36,21 @@ class DepositoStrumenti:
             :return: una lista con tutti gli strumenti presenti oppure None
         """
         cnx = get_connection()
-        if cnx is not None:
-            cursor = cnx.cursor()
+        if cnx is None:
+            return None
+        cursor = cnx.cursor(dictionary = True)
+
+        try:
+                cursor.execute('SELECT * FROM strumento')
+                righe = cursor.fetchall()
+                return [Strumento(**riga) for riga in righe]
+        finally:
+            cursor.close()
+            cnx.close()
+
+
+
+
         # TODO
 
     def cerca_strumenti_per_tipo(self, tipo) -> list[Strumento] | None:
