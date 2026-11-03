@@ -41,9 +41,9 @@ class DepositoStrumenti:
         cursor = cnx.cursor(dictionary = True)
 
         try:
-                cursor.execute('SELECT * FROM strumento')
-                righe = cursor.fetchall()
-                return [Strumento(**riga) for riga in righe]
+            cursor.execute('SELECT * FROM strumento')
+            righe = cursor.fetchall()
+            return [Strumento(**riga) for riga in righe]
         finally:
             cursor.close()
             cnx.close()
@@ -62,12 +62,21 @@ class DepositoStrumenti:
         cnx = get_connection()
         if cnx is None:
             return None
-        cursor = cnx.cursor(dictionary=True)
+        cursor = cnx.cursor(dictionary = True)
         try:
-            cursor.execute("SELECT * FROM strumento WHERE tipo = %s", (tipo,))
-            righe = cursor.fetchall()
-            return [Strumento(**riga) for riga in righe]
+            query = ''' SELECT *
+                        FROM strumento
+                        WHERE tipo = %s'''
+            cursor.execute(query, (tipo,))
+            '''(tipo,) serve la , dopo tipo perchè execute assegna i parametri a %s in base alla loro posizione, e quindi in 
+            execute( query, ... ) dopo la queri serve un argomento che sia una sequenza in ordine, quindi una lista una tupla o un dizionario.
+            in questo caso aggiungere la virgola dopo tipo (tipo, ) crea una tupla con primo valore tipo'''
+            righe_t = cursor.fetchall()
+            return [Strumento(**riga) for riga in righe_t]
+            # Strumento(**riga) è uguale a dire Strumento( codice = riga['codice'], tipo = riga['tipo'].. etc
+            #funziona solo se il dizioario (riga) ha chiavi uguali al nome degli attribuiti dell'oggetto
         finally:
-            cursor.close()
             cnx.close()
+            cursor.close()
+
         # TODO

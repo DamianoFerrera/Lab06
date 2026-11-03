@@ -8,7 +8,6 @@ from UI.alert import AlertManager
     - Rappresenta l'interfaccia utente
     - Riceve i dati dal MODELLO e li presenta senza modificarli
 '''
-
 class View:
     def __init__(self, page: ft.Page):
         # Page
@@ -66,6 +65,7 @@ class View:
 
         # Altri Pulsanti da implementare (es. "Mostra" e "Cerca")
         self.bottone_mostra_strumenti = ft.Button(content = 'Mostra', on_click = self.controller.mostra_lista)
+        self.bottone_cerca_tipo = ft.Button(content = 'Cerca', on_click = self.controller.ricerca_per_tipo)
         # TODO
 
         # --- LAYOUT ---
@@ -85,15 +85,17 @@ class View:
             ft.Divider(),
 
             # Sezione 3
-            ft.Row([ft.Text("Strumenti",  size=20), self.bottone_mostra_strumenti], alignment=ft.MainAxisAlignment.START),
+            ft.Column([ft.Row([ft.Text("Strumenti",  size=20), self.bottone_mostra_strumenti], alignment=ft.MainAxisAlignment.START), self.lista_strumenti], expand = True),
             ft.Divider(),
             # TODO
 
             # Sezione 4
+            ft.Column([ft.Row(ft.Text('Cerca strumenti per tipo', size = 20), alignment = ft.MainAxisAlignment.CENTER), ft.Row([self.input_tipo_strumento, self.bottone_cerca_tipo]), self.lista_strumenti_ricerca], expand = True)
             # TODO
         )
 
     def cambia_tema(self, e):
         self.page.theme_mode = ft.ThemeMode.DARK if self.toggle_cambia_tema.value else ft.ThemeMode.LIGHT
+
         self.toggle_cambia_tema.label = "Tema scuro" if self.toggle_cambia_tema.value else "Tema chiaro"
         self.page.update()
