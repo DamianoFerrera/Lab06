@@ -36,6 +36,6 @@ class Controller:
             self._view.lista_strumenti.controls.append(ft.Text('errore connessione database', color = 'red'))
         else:
             for i in strumenti:
-                self._view.lista_strumenti.controls.append(ft.Text(f"{i.id} | {i.nome} | {i.tipo} | {i.marca} | {i.prezzo}"))
+                self._view.lista_strumenti.controls.append(ft.Text(f"{i.codice} | {i.tipo} | {i.marca} | {i.anno_acquisto} | {i.valore} | {i.disponibile}"))
 
     # TODO

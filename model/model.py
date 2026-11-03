@@ -59,4 +59,15 @@ class DepositoStrumenti:
             :param tipo: il tipo dello strumento (es. "Chitarra")
             :return: una lista con tutti gli strumenti del tipo indicato oppure None
         """
+        cnx = get_connection()
+        if cnx is None:
+            return None
+        cursor = cnx.cursor(dictionary=True)
+        try:
+            cursor.execute("SELECT * FROM strumento WHERE tipo = %s", (tipo,))
+            righe = cursor.fetchall()
+            return [Strumento(**riga) for riga in righe]
+        finally:
+            cursor.close()
+            cnx.close()
         # TODO
